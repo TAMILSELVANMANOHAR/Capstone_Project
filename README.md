@@ -10,7 +10,37 @@ The project automates the complete software delivery process from source code ma
 
 ## Architecture
 
-GitHub → Jenkins → Docker → Docker Hub → AWS EC2 → Node.js Application → Prometheus → Grafana
+                 GitHub
+                    │
+                    ▼
+             Jenkins (CI/CD)
+                    │
+         Build & Docker Image
+                    │
+                    ▼
+               Docker Hub
+                    │
+                    ▼
+         AWS EC2 (Docker Container)
+                    │
+                    ▼
+         Node.js Web Application
+                    │
+      ┌─────────────┴─────────────┐
+      ▼                           ▼
+ Node Exporter              Prometheus
+                                   │
+                                   ▼
+                               Grafana
+                                   │
+                                   ▼
+                              CPU Alerts
+
+             Cron Jobs
+      ┌─────────────────────┐
+      │ backup.sh           │
+      │ cleanup.sh          │
+      └─────────────────────┘
 
 Cron Jobs are used to automate backup and cleanup tasks.
 

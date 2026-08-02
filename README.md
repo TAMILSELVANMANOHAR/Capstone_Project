@@ -8,40 +8,17 @@ The project automates the complete software delivery process from source code ma
 
 ---
 
-## Architecture
+## Architecture Flow
 
-                 GitHub
-                    │
-                    ▼
-             Jenkins (CI/CD)
-                    │
-         Build & Docker Image
-                    │
-                    ▼
-               Docker Hub
-                    │
-                    ▼
-         AWS EC2 (Docker Container)
-                    │
-                    ▼
-         Node.js Web Application
-                    │
-      ┌─────────────┴─────────────┐
-      ▼                           ▼
- Node Exporter              Prometheus
-                                   │
-                                   ▼
-                               Grafana
-                                   │
-                                   ▼
-                              CPU Alerts
-
-             Cron Jobs
-      ┌─────────────────────┐
-      │ backup.sh           │
-      │ cleanup.sh          │
-      └─────────────────────┘
-
+1. Developer pushes code to GitHub.
+2. Jenkins automatically triggers the pipeline.
+3. Jenkins builds the Docker image.
+4. Docker image is pushed to Docker Hub.
+5. Docker container is deployed on the AWS EC2 application server.
+6. Prometheus collects metrics from Node Exporter.
+7. Grafana visualizes metrics and generates alerts.
+8. Cron jobs automate backup and cleanup tasks.
+   
 Cron Jobs are used to automate backup and cleanup tasks.
 
 ---

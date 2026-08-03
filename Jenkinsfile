@@ -4,7 +4,7 @@ agent any
 
 environment {
 
-IMAGE_NAME="yourdockerhubusername/node-app"
+IMAGE_NAME = "tamilselvan2206/node-app"
 
 }
 
